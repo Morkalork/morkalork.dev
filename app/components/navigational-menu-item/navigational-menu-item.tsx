@@ -13,7 +13,9 @@ const StyledButton = styled(Button)`
   display: block;
 `;
 
-const StyledLink = styled(Link)<{ isSelected?: boolean }>`
+const StyledLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "$isSelected",
+})<{ $isSelected?: boolean }>`
   color: white;
   text-decoration: none;
 
@@ -21,7 +23,7 @@ const StyledLink = styled(Link)<{ isSelected?: boolean }>`
     color: black;
   }
 
-  font-weight: ${({ isSelected }) => (isSelected ? "bold" : "normal")};
+  font-weight: ${({ $isSelected }) => ($isSelected ? "bold" : "normal")};
 `;
 
 export const NavigationalMenuItem = ({
@@ -32,7 +34,7 @@ export const NavigationalMenuItem = ({
 }: Props) => {
   return (
     <StyledButton onClick={onClick}>
-      <StyledLink href={url} isSelected={isSelected}>
+      <StyledLink href={url} $isSelected={isSelected}>
         {label}
       </StyledLink>
     </StyledButton>
