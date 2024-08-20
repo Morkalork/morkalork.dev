@@ -2,13 +2,8 @@
 
 import {
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
   Container,
 } from "@mui/material";
-import Link from "next/link";
 import { useMediumHook } from "../components/hooks/use-medium-hook";
 import { PortfolioCard } from "./portfolio-card";
 import { getImageFromArticle } from "../utils/get-image-from-article";

@@ -28,7 +28,7 @@ const RelativeSizeImage = styled(Image)`
 export default function Home() {
   return (
     <Container>
-      <FlexWrapper>
+      <FlexWrapper display={{ xs: "block", md: "flex" }}>
         <Box>
           <h1>Hello?</h1>
           <p>
@@ -45,9 +45,10 @@ export default function Home() {
             GitHub CoPilot, but it felt as though it fitted).
           </p>
           <p>
-            If, for whatever reason, it is urgent, you'll find me at Section 8, row 7
-            of Malmö Stadion at any given Malmö FF home game. Feel free to contact me
-            there, but be aware that I might be a bit preoccupied with chanting.
+            If, for whatever reason, it is urgent, you'll find me at Section 8,
+            row 7 of Malmö Stadion at any given Malmö FF home game. Feel free to
+            contact me there, but be aware that I might be a bit preoccupied
+            with chanting.
           </p>
         </Box>
         <SecondBox>
