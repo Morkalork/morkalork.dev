@@ -23,7 +23,7 @@ const npmModules = [
 ];
 
 export default function Portfolio() {
-  const mediumPosts = useMediumHook({ handle: "@maffelu" });
+  const { posts: mediumPosts, isLoading } = useMediumHook({ handle: "@maffelu" });
 
   return (
     <Container maxWidth="md">
@@ -67,21 +67,25 @@ export default function Portfolio() {
         </Box>
         <Box>
           <h2>My most recent medium posts:</h2>
-          <Box display={{ xs: "block", md: "flex" }}>
-            {mediumPosts.map((post) => (
-              <PortfolioCard
-                key={post.title}
-                title={post.title}
-                description={(post["content:encodedSnippet"] || "").slice(
-                  0,
-                  100
-                )}
-                url={post.link}
-                imageUrl={getImageFromArticle(post["content:encoded"])}
-                linkLabel="Read article"
-              />
-            ))}
-          </Box>
+          {isLoading ? (
+            <p>Loading posts...</p>
+          ) : (
+            <Box display={{ xs: "block", md: "flex" }}>
+              {mediumPosts.map((post) => (
+                <PortfolioCard
+                  key={post.title}
+                  title={post.title}
+                  description={(post["content:encodedSnippet"] || "").slice(
+                    0,
+                    100
+                  )}
+                  url={post.link}
+                  imageUrl={getImageFromArticle(post["content:encoded"])}
+                  linkLabel="Read article"
+                />
+              ))}
+            </Box>
+          )}
         </Box>
       </Box>
     </Container>

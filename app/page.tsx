@@ -30,18 +30,19 @@ export default function Home() {
     <Container>
       <FlexWrapper display={{ xs: "block", md: "flex" }}>
         <Box>
-          <h1>Hello?</h1>
+          <h1>Greetings!</h1>
           <p>
-            This is not a well-visited page. I mainly keep it to have some kind
-            of landing page for my VS Code extensions and other riff-raff
-            development related products
+            I am Magnus, writer of code and stories. This page will be updated
+            as often as I have time, but if nothing has happened in a while,
+            don't worry, I'm still alive.
           </p>
           <p>
             If you, for some reason, want to get in contact with me, please do
             so on either <a href="https://github.com/Morkalork">GitHub</a>,{" "}
-            <a href="https://www.linkedin.com/in/magnusferm/">LinkedIn</a> or{" "}
-            <a href="https://x.com/Maffelu">Twitter</a>. I'm not very active on
-            any of them, but I do check them (this last line was proposed by
+            <a href="https://www.linkedin.com/in/magnusferm/">LinkedIn</a>,{" "}
+            <a href="https://bsky.app/profile/morkalork.bsky.social">BlueSky</a>{" "}
+            or <a href="https://x.com/Maffelu">Twitter</a>. I'm not very active
+            on any of them, but I do check them (this last line was proposed by
             GitHub CoPilot, but it felt as though it fitted).
           </p>
           <p>

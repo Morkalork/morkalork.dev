@@ -17,12 +17,12 @@ import { usePathname } from "next/navigation";
 const menuItems = [
   { id: 1, url: "/", label: "Home" },
   { id: 2, url: "/portfolio", label: "Portfolio" },
+  { id: 3, url: "/writing", label: "Writing" },
 ];
 
 export const Navigation = () => {
   const currentPathName = usePathname();
   const matchingMenuItem = menuItems.find(({ url }) => url === currentPathName);
-  console.log({ currentPathName, matchingMenuItem });
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(
     matchingMenuItem?.id || 1
   );
