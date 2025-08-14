@@ -66,24 +66,43 @@ export default function Portfolio() {
           ))}
         </Box>
         <Box>
-          <h2>My most recent medium posts:</h2>
+          <h2>My most recent medium tech-posts:</h2>
           {isLoading ? (
             <p>Loading posts...</p>
           ) : (
-            <Box display={{ xs: "block", md: "flex" }}>
-              {mediumPosts.map((post) => (
-                <PortfolioCard
-                  key={post.title}
-                  title={post.title}
-                  description={(post["content:encodedSnippet"] || "").slice(
-                    0,
-                    100
-                  )}
-                  url={post.link}
-                  imageUrl={getImageFromArticle(post["content:encoded"])}
-                  linkLabel="Read article"
-                />
-              ))}
+            <Box 
+              display={{ xs: "block", md: "flex" }}
+              sx={{ 
+                flexWrap: 'wrap',
+                '& > *': { 
+                  minWidth: '25rem',
+                  flex: '1 1 auto'
+                }
+              }}
+            >
+              {mediumPosts
+                .filter((post) => {
+                  const categories = post.categories || [];
+                  if (Array.isArray(categories)) {
+                    return !categories.some((cat: string) => 
+                      cat.toLowerCase().includes("short-story")
+                    );
+                  }
+                  return true; // If categories is not an array, include the post
+                })
+                .map((post) => (
+                  <PortfolioCard
+                    key={post.title}
+                    title={post.title}
+                    description={(post["content:encodedSnippet"] || "").slice(
+                      0,
+                      100
+                    )}
+                    url={post.link}
+                    imageUrl={getImageFromArticle(post["content:encoded"])}
+                    linkLabel="Read article"
+                  />
+                ))}
             </Box>
           )}
         </Box>

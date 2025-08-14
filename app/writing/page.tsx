@@ -13,41 +13,32 @@ export default function Writing() {
   const { posts, isLoading } = useMediumHook({ handle: "maffelu" });
   const shortStories = useStoryFilter({ posts });
 
-  if (isLoading) {
-    return (
-      <Container>
-        <WritingHeader />
-        <LoadingState />
-      </Container>
-    );
-  }
+  const renderContent = () => {
+    if (isLoading) {
+      return <LoadingState />;
+    }
 
-  if (posts.length === 0) {
-    return (
-      <Container>
-        <WritingHeader />
-        <EmptyState message="No posts found or there was an error fetching from Medium." />
-      </Container>
-    );
-  }
+    if (posts.length === 0) {
+      return <EmptyState message="No posts found or there was an error fetching from Medium." />;
+    }
 
-  if (shortStories.length === 0) {
-    return (
-      <Container>
-        <WritingHeader />
-        <EmptyState message="No short stories found. Check back soon for new content!" />
-      </Container>
-    );
-  }
+    if (shortStories.length === 0) {
+      return <EmptyState message="No short stories found. Check back soon for new content!" />;
+    }
 
-  return (
-    <Container>
-      <WritingHeader />
+    return (
       <StoriesGrid
         shortStories={shortStories}
         extractImageFromContent={extractImageFromContent}
         formatDate={formatDate}
       />
+    );
+  };
+
+  return (
+    <Container>
+      <WritingHeader />
+      {renderContent()}
     </Container>
   );
 }
