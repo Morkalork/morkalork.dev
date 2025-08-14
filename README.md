@@ -4,7 +4,9 @@ This is, surprise surprise, the source code for morkalork.dev. Feel free to visi
 
 ## Development
 
-Sporadic.
+Sporadic. 
+
+And nowadays I'm vibe-coding this whole thing. I take no responsibility for the code here :)
 
 ## Contact
 
