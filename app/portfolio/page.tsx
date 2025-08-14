@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Container,
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useMediumHook } from "../components/hooks/use-medium-hook";
 import { PortfolioCard } from "./portfolio-card";
 import { getImageFromArticle } from "../utils/get-image-from-article";
@@ -23,7 +20,9 @@ const npmModules = [
 ];
 
 export default function Portfolio() {
-  const { posts: mediumPosts, isLoading } = useMediumHook({ handle: "@maffelu" });
+  const { posts: mediumPosts, isLoading } = useMediumHook({
+    handle: "@maffelu",
+  });
 
   return (
     <Container maxWidth="md">
@@ -53,6 +52,24 @@ export default function Portfolio() {
         />
       </Box>
       <Box>
+        <h2>Webstorm (JetBrains) plugins:</h2>
+        <h5>
+          <a href="https://plugins.jetbrains.com/plugin/27327-ts-test-toolbox">
+            TS Test Toolbox
+          </a>
+        </h5>
+        <p>
+          A plugin that allows for you to add tests and storybook stories for a
+          react component.
+        </p>
+        <img
+          src="https://plugins.jetbrains.com/files/27327/screenshot_db548dbe-ae3f-4a9e-89dc-2e850721ae84.png"
+          alt="ts-test-toolbox demo"
+          width="100%"
+          height="auto"
+        />
+      </Box>
+      <Box>
         <h2>Node Modules</h2>
         <Box display={{ xs: "block", md: "flex" }}>
           {npmModules.map((module) => (
@@ -70,21 +87,21 @@ export default function Portfolio() {
           {isLoading ? (
             <p>Loading posts...</p>
           ) : (
-            <Box 
+            <Box
               display={{ xs: "block", md: "flex" }}
-              sx={{ 
-                flexWrap: 'wrap',
-                '& > *': { 
-                  minWidth: '25rem',
-                  flex: '1 1 auto'
-                }
+              sx={{
+                flexWrap: "wrap",
+                "& > *": {
+                  minWidth: "25rem",
+                  flex: "1 1 auto",
+                },
               }}
             >
               {mediumPosts
                 .filter((post) => {
                   const categories = post.categories || [];
                   if (Array.isArray(categories)) {
-                    return !categories.some((cat: string) => 
+                    return !categories.some((cat: string) =>
                       cat.toLowerCase().includes("short-story")
                     );
                   }
