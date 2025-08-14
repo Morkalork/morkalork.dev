@@ -6,7 +6,7 @@ import { useStoryFilter } from "../components/hooks/use-story-filter";
 import { WritingHeader } from "../components/writing-header/writing-header";
 import { LoadingState } from "../components/loading-state/loading-state";
 import { EmptyState } from "../components/empty-state/empty-state";
-import { StoriesGrid } from "../components/stories-grid/stories-grid";
+import { LazyStoriesGrid } from "../components/lazy-wrapper/lazy-wrapper";
 import { formatDate, extractImageFromContent } from "../utils/story-utils";
 
 export default function Writing() {
@@ -31,7 +31,7 @@ export default function Writing() {
     }
 
     return (
-      <StoriesGrid
+      <LazyStoriesGrid
         shortStories={shortStories}
         extractImageFromContent={extractImageFromContent}
         formatDate={formatDate}

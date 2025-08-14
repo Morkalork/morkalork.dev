@@ -45,7 +45,7 @@ export default function Portfolio() {
           a specific module with scaffolding included:
         </p>
         <img
-          src="https://github.com/Morkalork/add-js-test/raw/HEAD/.public/add-js-test-demo.gif"
+          src="/images/add-js-test-demo.gif"
           alt="Add JS Test demo"
           width="100%"
           height="auto"
@@ -62,12 +62,12 @@ export default function Portfolio() {
           A plugin that allows for you to add tests and storybook stories for a
           react component.
         </p>
-        <img
-          src="https://plugins.jetbrains.com/files/27327/screenshot_db548dbe-ae3f-4a9e-89dc-2e850721ae84.png"
-          alt="ts-test-toolbox demo"
-          width="100%"
-          height="auto"
-        />
+                  <img
+            src="/images/ts-test-toolbox.gif"
+            alt="ts-test-toolbox demo"
+            width="100%"
+            height="auto"
+          />
       </Box>
       <Box>
         <h2>Node Modules</h2>
@@ -116,7 +116,7 @@ export default function Portfolio() {
                       100
                     )}
                     url={post.link}
-                    imageUrl={getImageFromArticle(post["content:encoded"])}
+                    imageUrl={getImageFromArticle(post["content:encoded"] || "")}
                     linkLabel="Read article"
                   />
                 ))}
