@@ -4,7 +4,20 @@ import { Box, Container } from "@mui/material";
 import { useMediumHook } from "../components/hooks/use-medium-hook";
 import { PortfolioCard } from "./portfolio-card";
 import { getImageFromArticle } from "../utils/get-image-from-article";
+import { LoadingState } from "../components/loading-state/loading-state";
 const npmModules = [
+  {
+    title: "babel-plugin-react-component-auto-labeler",
+    url: "https://www.npmjs.com/package/babel-plugin-react-component-auto-labeler",
+    description:
+      "A babel plugin that automatically labels react components with their name.",
+  },
+  {
+    title: "vite-plugin-use-hook-mock",
+    url: "https://www.npmjs.com/package/vite-plugin-use-hook-mock",
+    description:
+      "Vite plugin to auto-swap use- hook imports with .mock siblings when they exist.",
+  },
   {
     title: "Transval",
     url: "https://www.npmjs.com/package/transval",
@@ -21,8 +34,12 @@ const npmModules = [
 
 export default function Portfolio() {
   const { posts: mediumPosts, isLoading } = useMediumHook({
-    handle: "@maffelu",
+    handle: "maffelu", // Remove @ symbol to match Writing page
   });
+
+  // Debug logging
+  console.log("Portfolio - Medium posts:", mediumPosts);
+  console.log("Portfolio - Loading state:", isLoading);
 
   return (
     <Container maxWidth="md">
@@ -62,16 +79,25 @@ export default function Portfolio() {
           A plugin that allows for you to add tests and storybook stories for a
           react component.
         </p>
-                  <img
-            src="/images/ts-test-toolbox.gif"
-            alt="ts-test-toolbox demo"
-            width="100%"
-            height="auto"
-          />
+        <img
+          src="/images/ts-test-toolbox.gif"
+          alt="ts-test-toolbox demo"
+          width="100%"
+          height="auto"
+        />
       </Box>
       <Box>
         <h2>Node Modules</h2>
-        <Box display={{ xs: "block", md: "flex" }}>
+        <Box 
+          display={{ xs: "block", md: "flex" }}
+          sx={{ 
+            flexWrap: "wrap",
+            "& > *": {
+              minWidth: "25rem",
+              flex: "1 1 auto"
+            }
+          }}
+        >
           {npmModules.map((module) => (
             <PortfolioCard
               key={module.title}
@@ -85,7 +111,7 @@ export default function Portfolio() {
         <Box>
           <h2>My most recent medium tech-posts:</h2>
           {isLoading ? (
-            <p>Loading posts...</p>
+            <LoadingState />
           ) : (
             <Box
               display={{ xs: "block", md: "flex" }}
@@ -116,7 +142,9 @@ export default function Portfolio() {
                       100
                     )}
                     url={post.link}
-                    imageUrl={getImageFromArticle(post["content:encoded"] || "")}
+                    imageUrl={getImageFromArticle(
+                      post["content:encoded"] || ""
+                    )}
                     linkLabel="Read article"
                   />
                 ))}

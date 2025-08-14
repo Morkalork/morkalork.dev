@@ -28,9 +28,18 @@ export const useMediumStore = create<MediumStore>((set, get) => ({
   isLoading: false,
   lastFetched: null,
   
-  setPosts: (posts) => set({ posts }),
-  setLoading: (loading) => set({ isLoading: loading }),
-  setLastFetched: (timestamp) => set({ lastFetched: timestamp }),
+  setPosts: (posts) => {
+    console.log("Medium store - Setting posts:", posts.length);
+    set({ posts });
+  },
+  setLoading: (loading) => {
+    console.log("Medium store - Setting loading:", loading);
+    set({ isLoading: loading });
+  },
+  setLastFetched: (timestamp) => {
+    console.log("Medium store - Setting last fetched:", timestamp);
+    set({ lastFetched: timestamp });
+  },
   
   clearCache: () => set({ posts: [], lastFetched: null }),
   
@@ -38,7 +47,9 @@ export const useMediumStore = create<MediumStore>((set, get) => ({
   isCacheValid: () => {
     const { lastFetched } = get();
     if (!lastFetched) return false;
-    return Date.now() - lastFetched < CACHE_DURATION;
+    const isValid = Date.now() - lastFetched < CACHE_DURATION;
+    console.log("Medium store - Cache valid:", isValid, "Last fetched:", lastFetched);
+    return isValid;
   }
 }));
 
