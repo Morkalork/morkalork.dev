@@ -10,12 +10,12 @@ export const useStoryFilter = ({ posts }: UseStoryFilterProps) => {
   useEffect(() => {
     const filtered = posts.filter((post: any) => {
       const categories = post.categories || [];
-      const shortStoryCategory = "short-story";
-      return categories.some((cat: string) => 
+      const shortStoryCategory = "short-fiction";
+      return categories.some((cat: string) =>
         cat.toLowerCase().includes(shortStoryCategory)
       );
     });
-    
+
     setShortStories(filtered);
   }, [posts]);
 

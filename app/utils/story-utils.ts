@@ -20,15 +20,16 @@ export const extractImageFromContent = (content: string): string | null => {
   return null;
 };
 
-export const extractTeaserFromContent = (content: string): string => {
+export const extractTeaserFromContent = (content?: string): string => {
   if (!content) {
     return "";
   }
 
   // Remove HTML tags and get clean text
   const cleanText = content
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
+    .replace(/^(\s*<h4[^>]*>.*?<\/h4>\s*)(?=<h4[^>]*>)/i, "")
+    .replace(/<[^>]*>/g, "\n")
+    .replace(/\n{2,}/g, "\n")
     .trim();
 
   // Split by sentence endings and get first two sentences
